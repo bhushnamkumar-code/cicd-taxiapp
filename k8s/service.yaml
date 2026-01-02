@@ -1,13 +1,41 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name:  taxi-booking-service
+  name: taxi-booking-service
   namespace: taxi
 spec:
   type: LoadBalancer
   selector:
     app: taxi-booking
   ports:
-  - protocol: TCP
-    port: 8001
-    targetPort: 8080
+    - protocol: TCP
+      port: 8001
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-grafana
+  namespace: monitoring
+spec:
+  type: LoadBalancer
+  selector:
+    app: grafana
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-kube-prometheus-prometheus
+  namespace: monitoring
+spec:
+  type: LoadBalancer
+  selector:
+    app: alertmanager
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 9090
