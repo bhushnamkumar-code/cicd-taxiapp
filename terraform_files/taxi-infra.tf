@@ -17,7 +17,7 @@ resource "aws_instance" "ansible" {
     ami                     = "ami-0c398cb65a93047f2"
     instance_type           = "t2.micro"
     key_name                = "taxi"
-    vpc_security_group_ids  = [aws_security_group.demo-sg1.id]
+    vpc_security_group_ids  = [aws_security_group.demo-sg.id]
     //subnet_id               = "subnet-077471d3c705ea769"
     tags                    = {
         Name      = "ansible"
@@ -30,7 +30,7 @@ resource "aws_instance" "jenkins_master" {
   ami                        = "ami-0c398cb65a93047f2"
   instance_type              = "t2.medium"
   key_name                   = "taxi"
-  vpc_security_group_ids     = [aws_security_group.demo-sg1.id]
+  vpc_security_group_ids     = [aws_security_group.demo-sg.id]
   
   tags                       = {
     Name = "jenkins-master"
@@ -43,7 +43,7 @@ resource "aws_instance" "jenkins_slave" {
   ami                        = "ami-0c398cb65a93047f2"
   instance_type              = "t2.medium"
   key_name                   = "taxi"
-  vpc_security_group_ids     = [aws_security_group.demo-sg1.id]
+  vpc_security_group_ids     = [aws_security_group.demo-sg.id]
   
   tags                       = {
     Name = "jenkins-slave"
@@ -52,8 +52,8 @@ resource "aws_instance" "jenkins_slave" {
 }
 
 
-resource "aws_security_group" "demo-sg1" {
-  name        = "demo-sg1"
+resource "aws_security_group" "demo-sg" {
+  name        = "demo-sg"
   description = "SSH Access"
 
   
